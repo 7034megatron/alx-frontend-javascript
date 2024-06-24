@@ -1,8 +1,15 @@
-export default function createIteratorObject(report) {
-  let result = [];
-  for (const value of Object.values(report.allEmployees)) {
-    result = [...result, ...value];
+export default function iterateThroughObject(reportWithIterator) {
+  let employeeNames = "";
+
+  for (const department of reportWithIterator) {
+    const employees = department.allEmployees;
+
+    if (employees) {
+      for (const employee of employees) {
+        employeeNames += employee + (employeeNames.length > 0 ? " | " : "");
+      }
+    }
   }
 
-  return result;
+  return employeeNames;
 }
