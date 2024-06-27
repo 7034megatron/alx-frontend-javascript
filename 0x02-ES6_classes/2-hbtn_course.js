@@ -1,47 +1,50 @@
 class HolbertonCourse {
   constructor(name, length, students) {
-    // Type checking for attributes
+    this.name = name;
+    this.length = length;
+    this.students = students;
+  }
+
+  /**
+   * @param {String} name
+   */
+  set name(name) {
     if (typeof name !== 'string') {
       throw new TypeError('Name must be a string');
     }
-    if (typeof length !== 'number') {
-      throw new TypeError('Length must be a number');
-    }
-    if (!Array.isArray(students)) {
-      throw new TypeError('Students must be an array');
-    }
-
-    // Store attributes in underscore versions
     this._name = name;
-    this._length = length;
-    this._students = students;
   }
 
-  // Getters and setters with type checking
   get name() {
     return this._name;
   }
 
-  set name(newName) {
-    if (typeof newName !== 'string') {
-      throw new TypeError('Name must be a string');
+  /**
+   * @param {Number} length
+   */
+  set length(length) {
+    if (typeof length !== 'number') {
+      throw new TypeError('Length must be a number');
     }
-    this._name = newName;
+    this._length = length;
   }
 
   get length() {
     return this._length;
   }
 
-  set length(newLength) {
-    if (typeof newLength !== 'number') {
-      throw new TypeError('Length must be a number');
+  /**
+   * @param {Array} students
+   */
+  set students(students) {
+    if (students instanceof Array) {
+      this._students = students;
+    } else {
+      throw new TypeError('Students must be an Array');
     }
-    this._length = newLength;
   }
 
   get students() {
-    // Return a copy of the students array to prevent modification
-    return [...this._students];
+    return this._students;
   }
 }
